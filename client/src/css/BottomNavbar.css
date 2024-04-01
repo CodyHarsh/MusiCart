@@ -1,6 +1,6 @@
-.bottomnavbar {
+/* .bottomnavbar {
     position: none;
-}
+} */
 
 /* make for phone */
 @media screen and (max-width: 768px) {
@@ -11,7 +11,7 @@
         height: 60px;
         background-color: white;
         color: #2E0052;
-        display: flex;
+        display: flex !important;
         flex-direction: row;
         justify-content: space-evenly;
         padding-top: 5px;

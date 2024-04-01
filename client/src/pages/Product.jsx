@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import ProductContext from "../context/ProductContext";
 import { IoMdArrowBack } from "react-icons/io";
-import MobileProduct from "../components/ProductPage/mobileProduct";
+import MobileProduct from "../components/ProductPage/MobileProduct";
 
 const Product = () => {
   const { getProductById } = useContext(ProductContext);

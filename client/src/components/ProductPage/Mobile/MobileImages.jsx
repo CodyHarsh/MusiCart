@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const MobileImages = (props) => {
+  const product = props.image;
+  console.log("Props: ", props);
   const settings = {
     dots: true,
     infinite: true,
@@ -14,19 +16,20 @@ const MobileImages = (props) => {
     slidesToScroll: 1,
   };
 
+  console.log(product.otherImages);
+  // console.log(Array.isArray(product.otherImages));
   return (
     <div className="mobileimages">
       <Slider {...settings}>
         <div className="productimagecontainer">
-          <img
-            src={`data:image/png;base64, ${props.image}`}
-            className="productimage"
-            alt="product"
-          />
+          <img src={product.imageLink} className="productimage" alt="product" />
         </div>
-        <MiniImage />
-        <MiniImage />
-        <MiniImage />
+  
+         {Array.isArray(product.otherImageLink) &&
+          product.otherImageLink.map((item, index) => (
+            <MiniImage key={index} miniImage={item} />
+          ))}
+        
       </Slider>
     </div>
   );

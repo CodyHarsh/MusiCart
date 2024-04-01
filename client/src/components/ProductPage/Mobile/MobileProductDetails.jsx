@@ -1,3 +1,4 @@
+
 import React from 'react'
 import Reviews from '../Reviews';
 import BrandAvail from '../BrandAvail';
@@ -5,17 +6,18 @@ import ProductAbout from '../ProductAbout';
 import PriceType from '../PriceType';
 
 const MobileProductDetails = (props) => {
-    const {name, description,about, price, color, type, brand, rating, reviews, stock, _id} = props.product;
+  const product = props.product;
+  const {name, description,about, price, color, type, brand, rating, reviews, stock, _id} = props.product;
   return (
     <div className='mobileproductdetails productdescription'>
-         <h2 className='productdescriptiontitle'>{name}{" ("}{color}{")"}</h2>
-         <Reviews rating={rating} reviews={reviews} />
+         <h2 className='productdescriptiontitle'>{product.productName}{" ("}{product.color}{")"}</h2>
+         <Reviews rating={product.ratingStar} reviews={product.customerReviews} />
          <h5>
-            {description}
+            {product.description}
          </h5>
-         <PriceType type={type} price={price} color={color} />
-        <ProductAbout about={about}/>
-        <BrandAvail brand={brand} stock={stock}/>
+         <PriceType type={product.headphoneType} price={product.price} color={product.color} />
+        <ProductAbout about={product.productDescription}/>
+        <BrandAvail brand={product.brandName} stock={product.available}/>
     </div>
   )
 }
