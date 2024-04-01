@@ -9,7 +9,8 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import BottomNavbar from "./components/BottomNavbar";
-import { GlobalState } from "./context/globalContext";
+import { GlobalState } from "./context/GlobalContext";
+
 
 // Lazy load components
 const Home = React.lazy(() => import("./pages/Home"));
