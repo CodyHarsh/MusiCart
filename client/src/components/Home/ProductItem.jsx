@@ -20,8 +20,8 @@ const ProductItem = (props) => {
 
   return (
     <div className="productitemcontainer">
-      <div className="productitem">
-        <img onClick={handleClick} src={product.imageLink} alt="product" className="productimage" />
+      <div onClick={handleClick} className="productitem">
+        <img  src={product.imageLink} alt="product" className="productimage" />
         {isAuthenticated && (
           <div onClick={()=>addToCart(product._id)} className="carticoncontainer">
             <MdAddShoppingCart className="carticon" />
