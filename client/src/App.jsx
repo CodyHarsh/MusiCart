@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { GlobalState } from "./context/GlobalContext";
 import { ProductState } from "./context/ProductContext";
 import { CartState } from "./context/CartContext";
 import { ToastContainer } from "react-toastify";
@@ -10,6 +9,7 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import BottomNavbar from "./components/BottomNavbar";
+import { GlobalState } from "./context/globalContext";
 
 // Lazy load components
 const Home = React.lazy(() => import("./pages/Home"));
