@@ -1,0 +1,38 @@
+body {
+  background-color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  padding: 30px;
+  margin-bottom: 40px;
+}
+
+::placeholder {
+  color: #303030;
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .hero, .footer, .logocomponent, .container .search{
+    display: none;
+  }
+
+  .navbar .mobile .logocomponent {
+    display: flex;
+    margin-left: 20px;
+  }
+  
+}

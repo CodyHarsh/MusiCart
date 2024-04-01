@@ -1,0 +1,69 @@
+.filterbar {
+  margin-top: 1rem;
+  padding: 5px;
+  display: flex;
+}
+
+.filterbar .icon {
+  margin-right: 0.5rem;
+  color: #303030;
+  cursor: pointer;
+}
+
+.filterbar .view {
+  margin-right: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #303030;
+}
+
+.filterbar select {
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #303030;
+  margin: auto;
+  margin-right: 1rem;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.filterbar .sort {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #303030;
+  margin: auto;
+  margin-right: 1rem;
+}
+
+.sort select {
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  margin: auto;
+  background-color: white;
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .filterbar {
+    flex-direction: row-reverse;
+    justify-content: start;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    overflow-x: scroll;
+  }
+
+  .filterbar .view {
+    display: none;
+  }
+
+  .filterbar .filter{
+    display: flex;
+    overflow-x: scroll;
+  }
+
+  .filterbar .sort {
+    margin-right: 0rem;
+  }
+}

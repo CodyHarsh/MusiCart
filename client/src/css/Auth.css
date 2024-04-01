@@ -1,0 +1,249 @@
+.logincontainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.authform {
+  width: 37%;
+  height: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 40px;
+  border: 1px solid #d9d9d9;
+  border-radius: 18px;
+}
+
+.authform h1 {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.authform label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.authform .terms {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.authform .message {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.authform input {
+  width: 95%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  border: 1px solid #b6b6b6;
+  border-radius: 5px;
+}
+
+.authform button {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  border: 1px solid #b6b6b6;
+  border-radius: 5px;
+  background-color: #2e0052;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.authform button:hover {
+  background-color: #4d007f;
+}
+
+.login .logo, .signup .logo{
+  margin: 20px auto;
+}
+
+.logocomponent {
+  display: flex;
+  flex-direction: row;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logocomponent .logo {
+  width: 35px;
+  height: 35px;
+}
+
+.logocomponent .text {
+  font-size: 25px;
+  font-weight: bold;
+  color: #2e0052;
+  margin: auto 10px;
+}
+
+.createaccount {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 40px;
+  border: #b6b6b6 1px solid;
+  border-radius: 10px;
+  width: 45%;
+  height: 40px;
+  background-color: white;
+  color: #000;
+  cursor: pointer;
+}
+
+.createaccount:hover {
+  background-color: #2e0052;
+  color: white;
+}
+
+.divider {
+  width: 45%;
+  height: 1px;
+  margin: 35px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.divider .text {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 10px;
+}
+
+.divider .line {
+  width: 33%;
+  height: 1px;
+  background-color: #b6b6b6;
+  margin: auto;
+}
+
+.alreadyhaveanaccount {
+  font-size: 15px;
+  font-weight: 500;
+  width: 45%;
+  margin: 40px auto;
+  color: #000;
+  display: flex;
+  justify-content: center;
+}
+
+.alreadyhaveanaccount .signin {
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 5px;
+  color: #2e0052;
+  text-decoration: underline;
+}
+
+.logoutbutton {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  user-select: none;
+}
+
+.logoutbutton:hover {
+  cursor: pointer;
+  color: #b6b6b6;
+}
+
+.authbutton {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  user-select: none;
+  text-decoration: none;
+}
+
+.authbutton:hover {
+  cursor: pointer;
+  color: #b6b6b6;
+}
+
+
+/* Mobile View */
+
+@media screen and (max-width: 768px) {
+  .authform {
+    width: 80%;
+    height: 80%;
+    margin-top: 30px;
+  }
+  .authform h1 {
+    font-size: 25px;
+  }
+  .authform label {
+    font-size: 14px;
+  }
+  .authform .terms {
+    font-size: 12px;
+  }
+  .authform p, .authform .message {
+    font-size: 11px;
+  }
+  .authform input {
+    width: 100%;
+    height: 35px;
+    padding: 0 0;
+  }
+  .authform button {
+    font-size: 14px;
+  }
+
+  .createaccount {
+    width: 100%;
+    height: 45px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    margin: 25px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .divider .text {
+    font-size: 11px;
+    font-weight: 500;
+    margin: 0 10px;
+  }
+  .divider .line {
+    width: 33%;
+    height: 1px;
+    background-color: #b6b6b6;
+    margin: auto;
+  }
+  .alreadyhaveanaccount {
+    width: 80%;
+  }
+
+  .logocomponent .text{
+    color: white;
+  }
+
+}

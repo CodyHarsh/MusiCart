@@ -1,0 +1,60 @@
+.hero {
+  display: flex;
+  flex-direction: row;
+}
+
+.hero .logo {
+  width: 35px;
+  height: 35px;
+}
+
+.heroleft {
+  width: 45%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.heroleft .text {
+  font-size: 25px;
+  font-weight: bold;
+  color: #2E0052;
+  margin-left: 10px;
+}
+
+.heroleft .location {
+  margin: auto auto auto 15px;
+}
+
+.heroright {
+  width: 45%;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.heroright .cartbtn {
+  text-decoration: none;
+  background-color: #1D7000;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: 600;
+  min-width: 100px;
+}
+
+.heroright .cartbtn:hover {
+  background-color: #1D6000;
+}
+
+.heroright .carticon {
+  width: 15px;
+  height: 15px;
+  margin-right: 2px;
+}

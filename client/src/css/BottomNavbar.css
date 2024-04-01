@@ -1,0 +1,47 @@
+.bottomnavbar {
+    position: none;
+}
+
+/* make for phone */
+@media screen and (max-width: 768px) {
+    .bottomnavbar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        background-color: white;
+        color: #2E0052;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding-top: 5px;
+        z-index: 50;
+        overflow-x: hidden;
+        border-top: 1px solid #c8c8c8;
+    }
+
+    .bottomnavbar-item {
+        cursor: pointer;
+        margin: 0 15px;
+        text-decoration: none;
+        color: #2E0052;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .bottomnavbar-icon {
+        font-size: 30px;
+        margin-bottom: 0;
+    }
+
+    .bottomnavbar-text{
+        font-size: 12px;
+        margin-top: 0;
+    }
+
+    .bottomnavbar .active{
+        border-top: 4px solid #2E0052;
+        position: relative;
+        top: -4px;
+    }
+
+}

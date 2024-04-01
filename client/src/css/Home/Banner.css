@@ -1,0 +1,91 @@
+.banner {
+  background: rgb(147, 147, 230);
+  background: linear-gradient(90deg, #7286b4 16%, #e794ce 100%);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+}
+
+.bannerleft {
+  width: 45%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bannerleft .text {
+  font-size: 35px;
+  font-weight: 600;
+  color: rgb(45, 0, 97);
+  margin-left: 10px;
+}
+
+.bannerleft button {
+  background-color: #2e0052;
+  width: 120px;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.bannerright {
+  width: 45%;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bannerright img {
+  width: 25rem;
+  position: relative;
+  top: -6rem;
+  left: 5rem;
+  margin-bottom: -8.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .banner {
+    max-height: 100px;
+    margin-top: 4rem;
+    /* overflow-x: hidden; */
+  }
+
+  .container{
+    overflow: hidden;
+  }
+
+  .bannerleft {
+    padding: 0;
+    margin: 0;
+    width: 60%;
+  }
+
+  .bannerright {
+    padding: 0;
+    margin: 0;
+    width: 40%;
+  }
+
+  .banner .text {
+    font-size: 17px;
+  }
+
+  .banner img {
+    width: 14rem;
+    height: 12rem;
+    position: relative;
+    left: 3rem;
+    top: -4.5rem;
+    margin-bottom: 0;
+  }
+}

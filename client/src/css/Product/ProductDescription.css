@@ -1,0 +1,78 @@
+.productdescription .productdescriptiontitle{
+    margin-bottom: 5px;
+}
+
+.productdescription .reviews {
+    display: flex;
+    align-items: center;
+}
+
+.productdescription .reviews .star{
+    color: #FFD600;
+    font-size: 1.1rem;
+}
+
+.productdescription .reviews .reviewscount{
+    margin-left: 5px;
+    font-size: 0.9rem;
+}
+
+.productdescription .price {
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.productdescription .type {
+    font-size: 0.9rem;
+}
+
+.productdescription .about .items{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 0px;
+    margin-left: -10px;
+    font-size: 13px;
+}
+
+.productdescription .about .title{
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+.productdescription .brandavail .details{
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.productdescription .brandavail .price{
+    margin-top: 2px;
+}
+
+.productdescription .buttons{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.productdescription .buttons .addtocart, .productdescription .buttons .buynow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFD600;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 50%;
+    min-width: 100px;
+    margin-bottom: 10px;
+}
+
+.productdescription .buttons .buynow{
+    background-color: #FFB800;
+}
