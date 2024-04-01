@@ -1,6 +1,5 @@
 import React from "react";
 import MiniImage from "./MiniImage";
-import ProductImage from "../../assets/lg.png";
 
 const MiniImages = (props) => {
   console.log((props.otherImages))
