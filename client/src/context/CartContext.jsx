@@ -2,7 +2,6 @@ import { createContext } from "react";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-
 const CartContext = createContext();
 
 let url = import.meta.env.VITE_URL;
@@ -10,6 +9,7 @@ let url = import.meta.env.VITE_URL;
 const CartState = (props) => {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
   const toastMessage = (message, type) => {
     if (type === "success") toast.success(message);
@@ -18,19 +18,26 @@ const CartState = (props) => {
     else toast.info(message);
   };
 
-  const getCart = async () => {
+  const getCart = async (id, postName, quantity=0) => {
     try {
-      const response = await fetch(`${url}/api/product/getcart`, {
-        method: "GET",
+      const response = await fetch(`${url}/user/getCart`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
+          "Authorization": localStorage.getItem("token"),
         },
+        body: JSON.stringify({ 
+          id,
+          postName,
+          quantity
+        })
       });
       const data = await response.json();
       if (data.success) {
-        setCart(data.products);
-        setTotal(data.total);
+        console.log(data);
+        setCart(data.data.products);
+        setTotal(data.data.totalPrice);
+        setTotalQuantity(data.data.totalQuantity);
         return true;
       } else {
         toastMessage(data.error, "warning");
@@ -41,23 +48,51 @@ const CartState = (props) => {
       return false;
     }
   };
-
-  const addToCart = async (id) => {
+  
+  const addToCart = async (productId) => {
     try {
-      const response = await fetch(`${url}/api/product/addtocart`, {
+      const response = await fetch(`${url}/user/add-to-cart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
+          "Authorization": localStorage.getItem("token"),
         },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ productId }),
       });
       const data = await response.json();
+
       if (data.success) {
+        getCart();
         toastMessage("Item Added", "success");
         return true;
       } else {
-        toastMessage(data.error, "warning");
+        toastMessage(data.message, "warning");
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
+
+  const updateQuantity = async (productId, quantity=1) => {
+    try {
+      const response = await fetch(`${url}/user/updateQuantity`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ quantity, productId }),
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        toastMessage("Item Added", "success");
+        getCart();
+        return true;
+      } else {
+        toastMessage(data.message, "warning");
         return false;
       }
     } catch (error) {
@@ -73,6 +108,7 @@ const CartState = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
+        
       });
       let data = await response.json();
       if (data.success) {
@@ -89,14 +125,25 @@ const CartState = (props) => {
     }
   };
 
-  const checkout = async () => {
+  const checkout = async (name, purchaseDate,address ,selectedPaymentMethod,total, orderDelivery, productIds) => {
+    //userId, name, purchaseDate, address, paymentMethod, orderItems, orderDelivery, products
+    console.log(name, purchaseDate,address ,selectedPaymentMethod,total, orderDelivery, productIds)
     try {
-      const response = await fetch(`${url}/api/product/checkout`, {
-        method: "GET",
+      const response = await fetch(`${url}/user/addInvoice`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
+          "Authorization": localStorage.getItem("token"),
         },
+        body: JSON.stringify({ 
+          name,
+          purchaseDate,
+          address,
+          paymentMethod: selectedPaymentMethod,
+          orderItems: total,
+          orderDelivery,
+          products: productIds
+         }),
       });
       const data = await response.json();
       if (data.success) {
@@ -112,32 +159,7 @@ const CartState = (props) => {
     }
   };
 
-  const updateQuantity = async (id, quantity) => {
-    try {
-      const response = await fetch(`${url}/api/product/updatequantity`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-        body: JSON.stringify({ id, quantity }),
-      });
-      const data = await response.json();
-      if (data.success) {
-        toastMessage(data.info, "success");
-        return true;
-      } else {
-        toastMessage(data.error, "warning");
-        return false;
-      }
-    } catch (error) {
-      console.log(error);
-      return false;
-    } finally {
-      getCart();
-    }
-  };
-
+  
   return (
     <CartContext.Provider
       value={{
@@ -148,6 +170,7 @@ const CartState = (props) => {
         total,
         updateQuantity,
         buyNow,
+        totalQuantity
       }}
     >
       {props.children}

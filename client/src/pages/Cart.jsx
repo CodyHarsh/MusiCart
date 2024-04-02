@@ -10,7 +10,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import MobileCartItems from "../components/Cart/Mobile/MobileCartItems";
 
 const Cart = () => {
-  const {cart,total, getCart} = useContext(CartContext);
+  const {cart,total, getCart, totalQuantity} = useContext(CartContext);
   const {isAuthenticated} = useContext(GlobalContext);
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const Cart = () => {
     <div className="cart">
       <div className="goback">
         <Link to="/" className="gobackbtn">
-          <IoMdArrowBack className="gobackicon" />
+        <IoMdArrowBack className="gobackicon" />
           <span className="pc">Back to Products</span>
         </Link>
       </div>
@@ -34,7 +34,7 @@ const Cart = () => {
       <div className="pc">
       <div className="cartdiv">
         <div className="cartleft">
-          <CartItems cart={cart} total={total} />
+          <CartItems cart={cart} total={total}  totalQuantity={totalQuantity}/>
         </div>
         <div className="cartright">
           <CartPriceDetails total={total} />

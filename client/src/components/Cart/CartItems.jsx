@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import CartItem from './CartItem'
 
 const CartItems = (props) => {
-  const { cart, total} = props;
+  const { cart, total, totalQuantity} = props;
+  
   const [len, setLen] = useState(0);
   const findItems = () => {
     let count = 0;
@@ -19,14 +20,14 @@ const CartItems = (props) => {
     <div className='cartitems'>
         <hr />
             {cart.map((item) => (
-                <CartItem key={item._id} item={item} />
+                <CartItem key={item._id} item={item} total={total} totalQuantity={totalQuantity}/>
             ))}
         <hr />
         
     </div>
     <div className='carttotal'>
         <div className='carttotalleft'>
-            {len} Item
+            {totalQuantity} Item
         </div>
         <div className='carttotalright'>
             ₹{total}

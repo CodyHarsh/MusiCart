@@ -1,23 +1,26 @@
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET;
 
-JWT_SECRET = process.env.JWT_SECRET;
-
-fetchuser = (req, res, next)=>{
-    const token = req.header('auth-token');
-
-    if(!token){
-       return res.status(401).send({error: "Token Validation Error!"})
+const fetchUser = (req, res, next) => {
+    const token = req.header('Authorization');
+    if (!token) {
+        return res.status(401).send({ error: "Access denied. Token not provided." });
     }
 
-    try{
-    const data  = jwt.verify(token, JWT_SECRET);
-    req.user = data;
-    next();
-    }catch(error){
-        return res.status(401).send({error: "Token Validation Error!"})
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.body.userId = decoded.id;
+        req.user = decoded;
+        next();
+    } catch (error) {
+        if (error.name === 'TokenExpiredError') {
+            return res.status(401).send({ error: "Access token has expired." });
+        } else {
+            return res.status(401).send({ error: "Invalid token." });
+        }
     }
 }
 
-module.exports = fetchuser;
+module.exports = {fetchUser};

@@ -11,6 +11,21 @@
     justify-content: center;
 }
 
+.goback .gobackbtn{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    background-color: #2E0052;
+    height: max-content;
+    width: 180px;
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+}
+
+
+
 .cart hr{
     border: 1px solid #E1E1E1;
 }

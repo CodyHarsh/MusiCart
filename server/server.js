@@ -14,10 +14,13 @@ const userRoute = require("./routes/userRoute");
 const productRoute= require("./routes/productRoute");
 app.use(express.json());
 
-
+const corsOptions = {
+  origin: '*',
+  credentials: true // If you need to include cookies in the request (e.g., for authentication)
+};
 
 //Enabling the access of the application:
-app.use(cors())
+app.use(cors(corsOptions))
 
 
 //Connecting the database:

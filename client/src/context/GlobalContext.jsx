@@ -45,11 +45,12 @@ const GlobalState = (props) => {
       setProgress(60);
       if (data.success) {
         setUser({
-          name: data.data.name,
-          email: data.data.email,
-          mobile: data.data.mobile,
+          userId: data.data.user._id,
+          name: data.data.user.name,
+          email: data.data.user.email,
+          mobile: data.data.user.mobile,
         });
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.data.token);
         toastMessage(data.info, "success");
         setIsAuthenticated(true);
         setProgress(100);

@@ -30,6 +30,7 @@ const ProductState = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
+        
       });
   
       const categoriesResponse = await fetchTheCategories.json();
@@ -88,6 +89,7 @@ const ProductState = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
+        
         body: JSON.stringify({ _id: id }),
       });
       const data = await response.json();

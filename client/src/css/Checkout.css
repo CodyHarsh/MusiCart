@@ -43,6 +43,48 @@
     width: 50%;
 }
 
+
+.leftitem .lr .textarea{
+    resize: none;
+    width: 350px;
+    height: 110px;
+    flex-shrink: 0;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid hsl(0, 0%, 57%);
+    background: #FFF;
+}
+
+.leftitem .lr .checkoutName{
+    margin-bottom: 10px;
+    font-size: 16px;
+    width: 350px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid #919191;
+    background: #FFF;
+}
+
+.leftitem .lr .textarea::placeholder, .leftitem .lr .checkoutName::placeholder{
+    color: #797979;
+    font-size: 16px;
+}
+
+.leftitem .lr .paymentmethods {
+   width: 350px;
+   padding: 10px;
+   font-size: 18px;
+   border-radius: 5px;
+    border: 2px solid #919191;
+    color: #797979;
+}
+
+
+
+
+
+
+
 .checkout .leftitem .ll{
     font-weight: 600;
     color: #B52B00;
@@ -61,6 +103,10 @@
 .checkout .miniorder .ll {
     width: 20%;
     display: flex;
+}
+
+.checkout .miniorder .ll button{
+    cursor: pointer;
 }
 
 .checkout .miniorder .lr{
@@ -99,9 +145,13 @@
 
 .checkout .checkoutitem{
    color: black;
-   margin: auto 10px;
+   margin: 10px auto;
 }
 
+.checkout .checkoutitem img{
+    height: 100px;
+    width: 100px;
+}
 .checkout img{
     width: 170px;
     border-radius: 5px;
@@ -109,19 +159,19 @@
     border: 1px solid black;
 }
 
-.checkoutitem h1{
+.ciitemsDetails h1{
     font-size: 14px;
     margin: 0;
 }
 
-.checkoutitem h3{
+.ciitemsDetails h3{
     font-size: 12px;
     margin: 0;
     font-weight: 400;
     color: #797979;
 }
 
-.checkoutitem h2{
+.ciitemsDetails h2{
     font-size: 13px;
     margin: 0;
     font-weight: 400;
@@ -137,6 +187,7 @@
 }
 
 .checkout .placeorderwidget button{
+    cursor: pointer;
     background-color: #FFD600;
     color: black;
     margin: auto;
@@ -185,8 +236,9 @@
 }
 
 .citems {
+    max-width: 500px;
     display: flex;
-    overflow: scroll;
+    flex-wrap: wrap;
 }
 
 @media screen and (max-width: 768px) {

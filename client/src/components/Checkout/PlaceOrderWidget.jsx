@@ -13,7 +13,7 @@ const PlaceOrderWidget = (props) => {
   }
   return (
     <div className='placeorderwidget'>
-        <button onClick={handleCheckout}>Place your order</button>
+        <button className='placeOrderButton' onClick={handleCheckout}>Place your order</button>
         <p>By placing your order, you agree to Musicart privacy notice and conditions of use.</p>
         <hr />
         <h1>Order Summary</h1>
