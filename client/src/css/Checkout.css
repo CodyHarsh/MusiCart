@@ -62,6 +62,9 @@
 }
 
 .checkout .leftitem .ll, .checkout .leftitem .lr{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
     width: 50%;
 }
 
@@ -175,7 +178,7 @@
     width: 100px;
 }
 .checkout img{
-    width: 170px;
+    width: 100px;
     border-radius: 5px;
     margin: 0 auto;
     border: 1px solid black;

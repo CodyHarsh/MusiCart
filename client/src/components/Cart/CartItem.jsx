@@ -25,7 +25,7 @@ const CartItem = (props) => {
         </div>
         <div className='cartiteminfo'>
             <h3>{product.productName}</h3>
-            <p>Clour : {product.color}</p>
+            <p>Color : {product.color}</p>
             <p>In Stock</p>
         </div>
         <div className='cartitemprice'>

@@ -13,12 +13,11 @@ import { GlobalState } from "./context/GlobalContext";
 import Feedback from "./pages/Feedback";
 import PageNotFound  from "./pages/PageNotFound";
 import SingleInvoice from "./pages/SingleInvoice";
-
-
+import Login from "./pages/Login"
 
 // Lazy load components
 const Home = React.lazy(() => import("./pages/Home"));
-const Login = React.lazy(() => import("./pages/Login"));
+//const Login = React.lazy(() => import("./pages/Login"));
 const Signup = React.lazy(() => import("./pages/Signup"));
 const Product = React.lazy(() => import("./pages/Product"));
 const Cart = React.lazy(() => import("./pages/Cart"));

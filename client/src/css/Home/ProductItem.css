@@ -22,7 +22,7 @@
   flex-direction: column;
   margin: auto;
   height: max-content;
-  width: 150px;
+  width: 200px;
 }
 
 .productdetails > * {
@@ -110,6 +110,7 @@
 
   .productdetails{
     padding: 10px;
+    width: 150px;
   }
 
   .productdetails > * {
@@ -123,7 +124,7 @@
 
   .productitemcontainer{
     height: 300px;
-    width: max-content;
+    width: 150px;
     border-radius: 5px;
     border: 1px solid rgb(181, 181, 181);
   }

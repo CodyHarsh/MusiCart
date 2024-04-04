@@ -17,8 +17,8 @@ const dict = {
 }
 
 const Hero = () => {
-  const {isAuthenticated} = useContext(GlobalContext);
-  const {getCart, totalQuantity, handleLogout} = useContext(CartContext);
+  const {isAuthenticated,handleLogout} = useContext(GlobalContext);
+  const {getCart, totalQuantity} = useContext(CartContext);
   const [isVisible, setIsVisible] = useState(false);
 
   const location = useLocation();
@@ -26,12 +26,8 @@ const Hero = () => {
   //Check for the homepage or not
   let title = dict[location.pathname];
   if(location.pathname.charAt(1) === "p") title = "Product";
- 
+  const alpha = "harsh bharat madhusudhan Kailash Kumar"
   const isAtHome = location.pathname === "/";
-
-  useEffect(() => {
-    getCart();
-  }, [])
 
   return (
     <div className='hero'>
@@ -54,12 +50,12 @@ const Hero = () => {
         {
           isAuthenticated && isAtHome && location.pathname != "/success" &&
           <div className='herorightDetails'>
-            <div onClick={() => setIsVisible(!isVisible) } className='name'>{localStorage.getItem("userName").split(" ").map((word)=> word[0]).join()}</div>
+            <div onClick={() => setIsVisible(!isVisible) } className='name'>{localStorage.getItem("userName").split(" ").map((word)=> word[0]).join("").substring(0,2).toUpperCase()}</div>
 
             {
               isVisible && 
               <div className='hero-drop-down'>
-                <div className='fdsfs'>{localStorage.getItem("userName").split(" ").map((word)=> word).join(" ")}</div>
+                <div style={{textTransform: 'capitalize'}}>{localStorage.getItem("userName").split(' ').slice(0, 2).join(' ')}</div>
                 <hr />
                 <div onClick={handleLogout} className='hero-logout'>
                   Logout

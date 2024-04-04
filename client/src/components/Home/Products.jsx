@@ -4,16 +4,15 @@ import "../../css/Home/Products.css";
 import ProductItemListView from "./ProductItemListView";
 import ProductContext from "../../context/ProductContext";
 import Spinner from "../ProductPage/Spinner";
-import GlobalContext from "../../context/GlobalContext";
+import NotFound from "../../pages/NotFound";
+import CartContext from "../../context/cartContext";
 
 const Products = () => {
-  const { isList, getAllProducts, products, isLoading } =
-    useContext(ProductContext);
-
-  useEffect(() => {
-
-    getAllProducts();
-    
+  const { isList, getAllProducts, products, isLoading } = useContext(ProductContext);
+  const {getCart} = useContext(CartContext)
+    useEffect(() => {
+      getAllProducts();
+      getCart();
     console.log("Products.js in Home: ", products);
   }, []);
 
@@ -22,6 +21,7 @@ const Products = () => {
       {isLoading ? (
         <Spinner />
       ) : (
+        products.length === 0 ? (<NotFound name={"Products Not Found For this"} />) :
         <>
           <div
             className={`${isList ? "productlist" : "productsgrid"} products `}

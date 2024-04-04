@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../css/Checkout.css";
-import CheckoutDeliveryAddress from "../components/Checkout/CheckoutDeliveryAddress";
-import CheckoutPayment from "../components/Checkout/CheckoutPayment";
-import CheckoutReviewItems from "../components/Checkout/CheckoutReviewItems";
-import CheckOutMiniOrder from "../components/Checkout/CheckOutMiniOrder";
-import PlaceOrderWidget from "../components/Checkout/PlaceOrderWidget";
 import { Link, useParams } from "react-router-dom";
 import CartContext from "../context/CartContext";
 import { useContext } from "react";

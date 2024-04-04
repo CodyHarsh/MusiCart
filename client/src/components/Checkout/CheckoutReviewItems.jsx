@@ -33,7 +33,7 @@ const CheckoutReviewItems = (props) => {
             {props?.buyNow  ? 
               <img src={cart.imageLink} alt='product' /> :
               cart.map((item, index) => {
-                return <CheckoutItem key={index}  imageLink={item.product.imageLink} alt='product' />
+                return <CheckoutItem handleUpdatedName={handleUpdatedName} color={item.product.color} productName ={item.product.productName} key={index}  imageLink={item.product.imageLink} alt='product' />
               })
               
             } 

@@ -36,13 +36,12 @@ const CartState = (props) => {
       });
       const data = await response.json();
       if (data.success) {
-        console.log(data);
         setCart(data.data.products);
         setTotal(data.data.totalPrice);
         setTotalQuantity(data.data.totalQuantity);
         return true;
       } else {
-        toastMessage(data.error, "warning");
+       // toastMessage(data.error, "warning");
         return false;
       }
     } catch (error) {
@@ -90,11 +89,11 @@ const CartState = (props) => {
       const data = await response.json();
 
       if (data.success) {
-        toastMessage("Item Added", "success");
+        //toastMessage("Item Added", "success");
         getCart();
         return true;
       } else {
-        toastMessage(data.message, "warning");
+        //toastMessage(data.message, "warning");
         return false;
       }
     } catch (error) {

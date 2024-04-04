@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 
-const CheckoutItem = (props) => {
+const CheckoutItem = ({color, productName, handleUpdatedName, imageLink}) => {
  
  
   return (
-    <div className='checkoutitem'>
-        <img src={props.imageLink} alt='product' />
+    <div onClick={() => handleUpdatedName(color, productName)}  className='checkoutitem'>
+        <img src={imageLink} alt='product' />
     </div>
   )
 }

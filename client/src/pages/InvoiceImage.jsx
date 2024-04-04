@@ -4,7 +4,7 @@ export const InvoiceImage = ({color, productName, handleUpdatedName, imageLink})
   return (
     <div>
          <img
-            onClick={handleUpdatedName(
+            onClick={() => handleUpdatedName(
                 color,
                 productName
             )}
