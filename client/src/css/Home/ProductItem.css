@@ -43,7 +43,6 @@
 }
 
 .productitem .carticoncontainer {
-  z-index: 99;
   cursor: pointer;
   position: absolute;
   bottom: 10px;
