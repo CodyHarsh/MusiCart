@@ -1,0 +1,263 @@
+.invoice-icon-edit{
+    padding: 5px;
+}
+
+.invoice-data-items-icons-wrapper{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    justify-content: center;
+}
+
+.invoice-data-actual-wrapper{
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-transform: capitalize;
+    color: #797979;
+}
+
+.invoice-user-name{
+    font-size: 16px;
+    font-weight:500;
+}
+
+.invoice-data-actual-wrapper p{
+    margin: 0px;
+}
+
+.invoice-icon-edit img{
+    height: 50px;
+    width: 50px;
+}
+.invoice-data-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.product{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 10px;
+}
+
+.invoice-title{
+    text-align: center;
+}
+
+.invoice-not-found{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.view-invoice-button{
+    width: 10%;
+    text-decoration: none;
+    background-color: #2E0052;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: 600;
+    min-width: 130px;
+    margin: 10px;
+}
+.goback .gobackbtn{
+    width: 10%;
+    text-decoration: none;
+    background-color: #2E0052;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: 600;
+    min-width: 100px;
+    margin: 10px;
+}
+
+.goback .gobackicon{
+    display: none;
+}
+
+.productcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    padding: 10px;
+}
+
+.productcontainer .producttitle{
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.productcontainer .container{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+}
+
+
+.productcontainer .container .containerleft{
+    width: 40%;
+}
+
+.productcontainer .container .containerright{
+    width: 45%;
+    display: flex;
+}
+
+.productcontainer .productimage{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 90%;
+    height: 90%;
+}
+
+.miniimages{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 85%;
+}
+
+.miniimages .miniimage{
+    width: 20%;
+    height: 20%;
+    margin-right: 10px;
+}
+
+.miniimage .miniimageimage{
+    border: 2px solid black;
+    border-radius: 4px;
+    width: 140%;
+    height: 140%;
+}
+
+.logintobuy {
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 20px 0;
+    text-decoration: none;
+}
+
+.logintobuy .login{
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+    border: 1px sold black;
+    background-color: #FFB800;
+    padding: 4px 16px;
+    border-radius: 20px;
+    box-shadow: 2px 0px 0px 1px rgba(0, 0, 0, 0.1);
+    margin: 0px 20px 0px 0;
+}
+
+@media screen and (max-width: 768px) {
+
+    .mobile{
+        display: block;
+    }
+
+    .product{
+        padding: 0px;
+    }
+    .goback .gobackbtn{
+        background-color: white;
+        color: black;
+        border: 1px solid rgba(85, 85, 85, 0.255);
+        border-radius: 100%;
+        min-width: 0;
+        width: 13px;
+        box-shadow: 2px 0px 3px 0px rgba(0, 0, 0, 0.5);
+        margin-left: 0;
+    }
+
+    
+
+    .goback .gobackicon{
+        display: block;
+    }
+
+    .buttons .buynow, .buttons .addtocart{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: #FFD600;
+        color: black;
+        border: none;
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        width: 100%;
+        min-width: 100px;
+        margin-bottom: 10px;
+    }
+    
+    .buttons .buynow{
+        background-color: #FFB800;
+    }
+
+    .mobileimages{
+        margin-top: 10px;
+        border: 1px solid rgba(85, 85, 85, 0.855);
+        border-radius: 12px;
+    }
+    
+    .miniimage {
+        width: 65%;
+        height: 20%;
+        border: none;
+        margin: 25px 15px;
+    }
+
+    .productcontainer .productimage{
+        border: 0px;
+        border-radius: 0px;
+    }
+
+    .productimage{
+        border: 0px;
+       
+    }
+
+    .miniimage .miniimageimage{
+        border: 0px;
+        border-radius: 0px;
+      
+    }
+
+    .mobileproductdetails{
+        width: 100%;
+        margin: 10px auto;
+    }
+    
+    .view-invoice-button{
+        padding: 6px 0px;
+        width: 100px;
+    }
+}

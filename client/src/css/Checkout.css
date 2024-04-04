@@ -6,6 +6,28 @@
     justify-content: center;
     margin-bottom: 40px;
 }
+
+.goback .gobackbtn{
+    width: 10%;
+    text-decoration: none;
+    background-color: #2E0052;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: 600;
+    min-width: 100px;
+    margin: 10px;
+}
+.goback .gobackicon{
+    display: none;
+}
+
 .checkout .title {
     display: flex;
     justify-content: center;
@@ -242,6 +264,23 @@
 }
 
 @media screen and (max-width: 768px) {
+    .goback .gobackbtn{
+        background-color: white;
+        color: black;
+        border: 1px solid rgba(85, 85, 85, 0.255);
+        border-radius: 100%;
+        min-width: 0;
+        width: 13px;
+        box-shadow: 2px 0px 3px 0px rgba(0, 0, 0, 0.5);
+        margin-left: 0;
+    }
+
+    
+
+    .goback .gobackicon{
+        display: block;
+    }
+    
     .checkout .checkoutdiv{
         flex-direction: column;
     }

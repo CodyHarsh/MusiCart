@@ -44,6 +44,7 @@ const GlobalState = (props) => {
       
       setProgress(60);
       if (data.success) {
+        console.log(data);
         setUser({
           userId: data.data.user._id,
           name: data.data.user.name,
@@ -51,6 +52,7 @@ const GlobalState = (props) => {
           mobile: data.data.user.mobile,
         });
         localStorage.setItem("token", data.data.token);
+        localStorage.setItem("userName",data.data.user.name)
         toastMessage(data.info, "success");
         setIsAuthenticated(true);
         setProgress(100);
@@ -68,7 +70,8 @@ const GlobalState = (props) => {
     }
   };
 
-  const signup = async (name, email, mobile, password) => {
+  const signup = async (name, email, password, mobile) => {
+    console.log("HERE");
     setProgress(20);
     try {
       const response = await fetch(`${url}/user/signup`, {
@@ -80,10 +83,62 @@ const GlobalState = (props) => {
       });
       setProgress(40);
       const data = await response.json();
+      console.log(data);
       setProgress(60);
       if (data.success) {
         toastMessage(data.message, "success");
+        setUser({
+          userId: data.data.response._id,
+          name: data.data.response.name,
+          email: data.data.response.email,
+          mobile: data.data.response.mobile,
+        });
+        localStorage.setItem("token", data.data.token);
+        localStorage.setItem("userName",data.data.response.name)
+
+        setIsAuthenticated(true);
         setProgress(100);
+        window.location.pathname = "/";
+        return true;
+      } else {
+        toastMessage(data.message, "warning");
+        setProgress(100);
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      setProgress(100);
+      return false;
+    }
+  };
+
+  const getUserDetails = async () => {
+    setProgress(20);
+    console.log("TOKEN: ", localStorage.getItem("token"));
+    try {
+      const response = await fetch(`${url}/user/getUserDetails`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("token"),
+        }
+      });
+      setProgress(40);
+      const data = await response.json();
+      console.log(data);
+      setProgress(60);
+      if (data.success) {
+        console.log(data);
+        toastMessage(data.message, "success");
+        setUser({
+          userId: data.data._id,
+          name: data.data.name,
+          email: data.data.email,
+          mobile: data.data.mobile,
+        });
+        setIsAuthenticated(true);
+        setProgress(100);
+        window.location.pathname = "/";
         return true;
       } else {
         toastMessage(data.message, "warning");
@@ -106,7 +161,7 @@ const GlobalState = (props) => {
 
   return (
     <GlobalContext.Provider
-      value={{ login, signup, progress, setProgress, user, handleLogout, isAuthenticated }}
+      value={{ login, signup, progress, setProgress, user, handleLogout, isAuthenticated ,getUserDetails}}
     >
       {props.children}
     </GlobalContext.Provider>

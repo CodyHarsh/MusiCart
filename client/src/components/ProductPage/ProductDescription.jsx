@@ -11,6 +11,7 @@ import LoginToBuy from './LoginToBuy'
 const ProductDescription = (props) => {
   const product = props.item;
   const {isAuthenticated} = useContext(GlobalContext);
+  
   return (
     <div className='productdescription'>
         <h2 className='productdescriptiontitle'>{product.productName}{" ("}{product.color}{")"}</h2>

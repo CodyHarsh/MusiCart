@@ -1,51 +1,51 @@
-import React, {useContext} from 'react'
-import "../css/BottomNavbar.css"
+import React, { useContext, useEffect, useState } from 'react';
+import "../css/BottomNavbar.css";
 import { GoHome } from "react-icons/go";
 import { MdAddShoppingCart } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GlobalContext from '../context/GlobalContext';
-
-const locationDict = {
-    '/': 0,
-    '/cart': 1,
-    '/login': 2,
-    '/signup': 2
-}
+import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
 
 const BottomNavbar = () => {
     const { handleLogout, isAuthenticated } = useContext(GlobalContext);
-    const [active, setActive] = React.useState(0);
-
+    const navigate = useNavigate();
     const location = useLocation();
-    React.useEffect(() => {
-        setActive(locationDict[location.pathname]);
-    }, [location])
-  return (
-    <div className='mobile bottomnavbar'>
-        <Link to="/" className={`bottomnavbar-item ${active==0&&'active'}`}>
-            <GoHome className='bottomnavbar-icon' />
-            <p className='bottomnavbar-text'>Home</p>
-        </Link>
-        <Link to="/cart" className={`bottomnavbar-item ${active==1&&'active'}`}>
-            <MdAddShoppingCart className='bottomnavbar-icon' />
-            <p className='bottomnavbar-text'>Cart</p>
-        </Link>
-        {
-            isAuthenticated ? (
-                <div onClick={handleLogout} className={`bottomnavbar-item ${active==2&&'active'}`}>
+    const [activeLink, setActiveLink] = useState('');
+
+    useEffect(() => {
+        setActiveLink(location.pathname);
+    }, [location]);
+
+    return (
+        <div className='mobile bottomnavbar'>
+            <Link to="/" className={`bottomnavbar-item ${activeLink === '/' && 'active'}`}>
+                <GoHome className='bottomnavbar-icon' />
+                <p className='bottomnavbar-text'>Home</p>
+            </Link>
+            <Link to="/cart" className={`bottomnavbar-item ${activeLink === '/cart' && 'active'}`}>
+                <MdAddShoppingCart className='bottomnavbar-icon' />
+                <p className='bottomnavbar-text'>Cart</p>
+            </Link>
+            {isAuthenticated ? (
+                <div onClick={() => navigate('/invoices')} className={`bottomnavbar-item ${activeLink === '/invoices' && 'active'}`}>
+                    <LiaFileInvoiceDollarSolid height="20px" width="20px" className='bottomnavbar-icon' />
+                    <p className='bottomnavbar-text'>Invoices</p>
+                </div>
+            ) : null}
+            {isAuthenticated ? (
+                <div onClick={handleLogout} className={`bottomnavbar-item ${activeLink === '/logout' && 'active'}`}>
                     <BsPerson className='bottomnavbar-icon' />
                     <p className='bottomnavbar-text'>Logout</p>
                 </div>
             ) : (
-                <Link to="/login" className={`bottomnavbar-item ${active==2&&'active'}`}>
+                <Link to="/login" className={`bottomnavbar-item ${activeLink === '/login' && 'active'}`}>
                     <BsPerson className='bottomnavbar-icon' />
                     <p className='bottomnavbar-text'>Login</p>
                 </Link>
-            )
-        }
-    </div>
-  )
+            )}
+        </div>
+    );
 }
 
-export default BottomNavbar
+export default BottomNavbar;

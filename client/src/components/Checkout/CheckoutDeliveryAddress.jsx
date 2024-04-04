@@ -7,6 +7,7 @@ const CheckoutDeliveryAddress = ({name, setName, address, setAddress }) => {
   };
 
   const handleAddressChange = (event) => {
+    console.log(address)
     setAddress(event.target.value);
   };
   return (

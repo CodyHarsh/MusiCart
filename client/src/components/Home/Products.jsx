@@ -4,14 +4,16 @@ import "../../css/Home/Products.css";
 import ProductItemListView from "./ProductItemListView";
 import ProductContext from "../../context/ProductContext";
 import Spinner from "../ProductPage/Spinner";
+import GlobalContext from "../../context/GlobalContext";
 
 const Products = () => {
   const { isList, getAllProducts, products, isLoading } =
     useContext(ProductContext);
 
   useEffect(() => {
-    getAllProducts();
 
+    getAllProducts();
+    
     console.log("Products.js in Home: ", products);
   }, []);
 

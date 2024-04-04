@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import CartContext from "../../context/CartContext";
+import { toast } from "react-toastify";
 
 
 const CartPriceDetails = (props) => {
@@ -9,13 +10,17 @@ const CartPriceDetails = (props) => {
   const {getCart} = useContext(CartContext);
   useEffect(() => {
     if (props.total > 0) {
-      setConv(45);
+      setConv(50);
     } else {
       setConv(0);
     }
   }, [props.total]);
 
   const handleCheckout = () => {
+    if(props.total <= 0){
+      toast.error("Add The Products In The Cart");
+      return;
+    }
     getCart();
     navigate("/checkout");
   }

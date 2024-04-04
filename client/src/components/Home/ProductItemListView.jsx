@@ -17,7 +17,7 @@ const ProductItemListView = (props) => {
   return (
     <div className="listview">
       <div className="productitem">
-        <img src={product.imageLink} alt="product" className="productimage" />
+        <img onClick={handleGotoProduct} src={product.imageLink} alt="product" className="productimage" />
         {isAuthenticated && (
           <div onClick={()=>addToCart(product._id)} className="carticoncontainer">
             <MdAddShoppingCart className="carticon" />

@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const userInvoice = new mongoose.Schema({
+const userInvoiceSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -41,10 +41,10 @@ const userInvoice = new mongoose.Schema({
                     },
                 }
             ]
-
         }
     ]
-})
+});
 
+const UserInvoice = mongoose.model('UserInvoice', userInvoiceSchema);
 
-module.exports = mongoose.model('UserInvoice', userInvoice);
+module.exports = UserInvoice;

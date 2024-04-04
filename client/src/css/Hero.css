@@ -9,10 +9,12 @@
 }
 
 .heroleft {
-  width: 45%;
+  width: 35%;
   padding: 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .heroleft .text {
@@ -23,13 +25,20 @@
 }
 
 .heroleft .location {
-  margin: auto auto auto 15px;
+  margin-right: 30px;
+  margin-left: 10px;
 }
 
+.heroleft .invoices{
+  text-decoration: none;
+  color: #333;
+}
 .heroright {
-  width: 45%;
+  width: 55%;
   padding: 20px;
   display: flex;
+  gap: 20px;
+  align-items: baseline;
   justify-content: flex-end;
 }
 
@@ -39,14 +48,16 @@
   color: white;
   border: none;
   border-radius: 20px;
-  padding: 10px;
+  padding: 5px 10px;
   font-size: 12px;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   font-weight: 600;
   min-width: 100px;
+  height: 30px;
 }
 
 .heroright .cartbtn:hover {
@@ -57,4 +68,55 @@
   width: 15px;
   height: 15px;
   margin-right: 2px;
+}
+
+.herorightDetails{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-weight: bold;
+}
+
+
+.herorightDetails .name{
+  height: 45px;
+  width: 45px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  stroke-width: 1px;
+  border: 2px solid #2E0052;
+  cursor: pointer;
+}
+
+
+.hero-drop-down{
+  position: absolute;
+  width: 200px;
+  margin-left: 20px;
+  z-index: 200;
+  top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: max-content;
+  border-radius: 20px;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.25);
+  padding: 20px 0px;
+  background-color: white;
+}
+
+.hero-drop-down hr{
+  width: 100%;
+  border: 1.2px solid #DDD;
+}
+
+.hero-drop-down .hero-logout{
+  padding: 0px 4px;
+  cursor: pointer;
 }

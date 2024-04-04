@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../css/Cart/Cart.css";
 import CartTitle from "../components/Cart/CartTitle";
 import CartItems from "../components/Cart/CartItems";
@@ -8,44 +8,68 @@ import CartContext from "../context/CartContext";
 import GlobalContext from "../context/GlobalContext";
 import { IoMdArrowBack } from "react-icons/io";
 import MobileCartItems from "../components/Cart/Mobile/MobileCartItems";
-
+import Spinner from "../components/ProductPage/Spinner";
+import NotFound from "./NotFound";
 const Cart = () => {
-  const {cart,total, getCart, totalQuantity} = useContext(CartContext);
-  const {isAuthenticated} = useContext(GlobalContext);
+  const { cart, total, getCart, totalQuantity } = useContext(CartContext);
+  const { isAuthenticated } = useContext(GlobalContext);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+   
 
   useEffect(() => {
-    if(!isAuthenticated) {
-      navigate('/login');
+    setIsLoading(true);
+    if (!isAuthenticated) {
+      navigate("/login");
       return;
     }
-    getCart();
+
+    const getTheData = async () => {
+      const data = await getCart();
+    };
+
+    getTheData();
+    setIsLoading(false);
   }, []);
 
   return (
-    <div className="cart">
-      <div className="goback">
-        <Link to="/" className="gobackbtn">
-        <IoMdArrowBack className="gobackicon" />
-          <span className="pc">Back to Products</span>
-        </Link>
-      </div>
-      <CartTitle />
-      <div className="pc">
-      <div className="cartdiv">
-        <div className="cartleft">
-          <CartItems cart={cart} total={total}  totalQuantity={totalQuantity}/>
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="cart">
+          <div className="goback">
+            <Link to="/" className="gobackbtn">
+              <IoMdArrowBack className="gobackicon" />
+              <span className="pc">Back to Products</span>
+            </Link>
+          </div>
+          <CartTitle />
+          {totalQuantity===0 ? (<NotFound name={"Cart Is Empty"} />) : (
+            <>
+            <div className="pc">
+              <div className="cartdiv">
+                <div className="cartleft">
+                  <CartItems
+                    cart={cart}
+                    total={total}
+                    totalQuantity={totalQuantity}
+                  />
+                </div>
+                <div className="cartright">
+                  <CartPriceDetails total={total} />
+                </div>
+              </div>
+            </div>
+            <div className="mobile">
+              <MobileCartItems cart={cart} total={total} />
+              <CartPriceDetails total={total} />
+            </div>
+          </>
+          )}
         </div>
-        <div className="cartright">
-          <CartPriceDetails total={total} />
-        </div>
-      </div>
-      </div>
-      <div className="mobile">
-        <MobileCartItems cart={cart} total={total} />
-        <CartPriceDetails total={total} />
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

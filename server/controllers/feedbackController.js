@@ -3,14 +3,14 @@ const { success, error } = require("../utlis/responseWrapper");
 
 const feedbackController = async (req, res) => {
     try {
-        const {user, type, message} = req.body;
+        const {userId, type, message} = req.body;
 
-        if(!user ||  !type || !message){
+        if(!userId ||  !type || !message){
             return res.status(200).json(error(401, "User Details are missing",[] ))
         }
 
         const response = await feedback.create({
-            user,
+            user: userId,
             type, 
             message
         })

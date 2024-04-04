@@ -10,98 +10,127 @@ import CartContext from "../context/CartContext";
 import { useContext } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/ProductPage/Spinner";
 import GlobalContext from "../context/GlobalContext";
 
 const Checkout = (props) => {
-    //userId, name, purchaseDate, address, paymentMethod, orderItems, orderDelivery, products
-    const orderDelivery = 50;
-  console.log("CHECKOUT.JSx: ", props);
-  const { cart, total, checkout, buyNow, totalQuantity, getCart } = useContext(CartContext);
+  //userId, name, purchaseDate, address, paymentMethod, orderItems, orderDelivery, products
   const { isAuthenticated } = useContext(GlobalContext);
   const navigate = useNavigate();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [productIds, setProductIds] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
-  useEffect(() => {
-    if(!isAuthenticated) {
-      navigate('/login');
-      return;
-    }
-    if (total === 0) {
-      navigate("/");
-      return;
-    }
-   
-    getCart();
-  }, []);
-  console.log(total);
+  const orderDelivery = 50;
+  const { cart, total, checkout, buyNow, totalQuantity, getCart } = useContext(CartContext);
 
-  const handleCheckout = () => {
+  const dummyCheckout = () => {};
+  console.log("CHECKOUT.JSx: ", props);
+  console.log("CART: ", cart, " ");
+
+  useEffect(() => {
+    setIsLoading(true);
+    const getTheData = async () => {
+        if (!isAuthenticated) {
+            navigate("/login");
+            return;
+        }
+
+        if (props.buyNow) {
+            console.log("HERE");
+            const data = await buyNow(id);
+        } else {
+            console.log("GET CART");
+            const data = await getCart();
+        }
+    };
+    getTheData();
+    setIsLoading(false);
+}, []);
+
+
+  let checkoutData = {
+    name,
+    address,
+    selectedPaymentMethod,
+    orderDelivery,
+  };
+  useEffect(() => {
+    checkoutData = {
+      name,
+      address,
+      selectedPaymentMethod,
+      orderDelivery,
+    };
+  }, [name, address, selectedPaymentMethod, orderDelivery]);
+  console.log(checkoutData);
+
+  const handleCheckout = async () => {
     if (total === 0) {
       navigate("/");
       return;
     }
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    
-    const purchaseDate = mm + '/' + dd + '/' + yyyy;
-    setName(name);
-    setAddress(address);
-    setSelectedPaymentMethod(selectedPaymentMethod);
-    setProductIds(productIds);
-  
-    console.log(name, purchaseDate, address, selectedPaymentMethod, total, orderDelivery, productIds);
-    
-    checkout(name, purchaseDate, address, selectedPaymentMethod, total, orderDelivery, productIds);
-    navigate("/success");
+
+    const data = await checkout(checkoutData);
+    console.log("CHECKOUT DATA RESPONSE", data);
+    if (data) {
+      navigate("/success");
+    }
   };
-  
 
   return (
-    
     <div className="checkout">
       <div className="goback">
-        <Link to="/cart" className="gobackbtn">
+        <Link to="/" className="gobackbtn">
           <IoMdArrowBack className="gobackicon" />
           <span className="pc">Back to Products</span>
         </Link>
       </div>
       <div className="title">Checkout</div>
       <div className="checkoutdiv">
-        <div className="checkoutleft">
-          <CheckoutDeliveryAddress name={name} setName={setName} address={address} setAddress={setAddress} />
-          <hr />
-          <CheckoutPayment selectedPaymentMethod= {selectedPaymentMethod} setSelectedPaymentMethod={setSelectedPaymentMethod} />
-          <hr />
-          <CheckoutReviewItems productIds={productIds} setProductIds={setProductIds} cart={cart} />
-          <hr />
-          <div className="pc">
-            <CheckOutMiniOrder total={total} />
-          </div>
-        </div>
-        <div className="mobile">
-          <hr />
-          <div className="">
-            <div className="leftitem">
-              <div className="ll">Order Total: ₹{total}</div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <div className="checkoutleft">
+              <CheckoutDeliveryAddress
+                name={name}
+                setName={setName}
+                address={address}
+                setAddress={setAddress}
+              />
+              <hr />
+              <CheckoutPayment
+                selectedPaymentMethod={selectedPaymentMethod}
+                setSelectedPaymentMethod={setSelectedPaymentMethod}
+              />
+              <hr />
+               <CheckoutReviewItems
+                    buyNow = {props?.buyNow}
+                cart={cart}
+              />  
+              <hr />
+              <div className="pc">
+                <CheckOutMiniOrder handleCheckout={handleCheckout} total={total} />
+              </div>
             </div>
-          </div>
-          <div className="placeorderwidget">
-            <button onClick={handleCheckout}>Place your order</button>
-          </div>
-        </div>
-
-        <div className="checkoutright pc">
-          <PlaceOrderWidget
-            total={total}
-            checkout={props.buyNow ? dummyCheckout : checkout}
-          />
-        </div>
+            <div className="mobile">
+              <hr />
+              <div className="">
+                <div className="leftitem">
+                  <div className="ll">Order Total: ₹{total}</div>
+                </div>
+              </div>
+              <div className="placeorderwidget">
+                <button onClick={handleCheckout}>Place your order</button>
+              </div>
+            </div>
+            <div className="checkoutright pc">
+              <PlaceOrderWidget handleCheckout={handleCheckout} total={total} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

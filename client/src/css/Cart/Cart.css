@@ -23,6 +23,9 @@
     padding: 10px;
     color: white;
 }
+.goback .gobackicon{
+    display: none;
+}
 
 
 
@@ -142,6 +145,7 @@
     border-radius: 8px;
     border: none;
     width: 100%;
+    cursor: pointer;
 }
 
 .cart .cartvalueinfo{
@@ -228,6 +232,23 @@
     .cart .cartitemimage img{
         border: none;
         border-radius: 0;
+    }
+
+    .goback .gobackbtn{
+        background-color: white;
+        color: black;
+        border: 1px solid rgba(85, 85, 85, 0.255);
+        border-radius: 100%;
+        min-width: 0;
+        width: 13px;
+        box-shadow: 2px 0px 3px 0px rgba(0, 0, 0, 0.5);
+        margin-left: 0;
+    }
+
+    
+
+    .goback .gobackicon{
+        display: block;
     }
     
 

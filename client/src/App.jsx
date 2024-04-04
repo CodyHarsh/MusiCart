@@ -10,6 +10,10 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import BottomNavbar from "./components/BottomNavbar";
 import { GlobalState } from "./context/GlobalContext";
+import Feedback from "./pages/Feedback";
+import PageNotFound  from "./pages/PageNotFound";
+import SingleInvoice from "./pages/SingleInvoice";
+
 
 
 // Lazy load components
@@ -20,7 +24,8 @@ const Product = React.lazy(() => import("./pages/Product"));
 const Cart = React.lazy(() => import("./pages/Cart"));
 const Success = React.lazy(() => import("./pages/Success"));
 const Checkout = React.lazy(() => import("./pages/Checkout"));
-
+// const SingleInvoice =  React.lazy(() => import("./pages/SingleInvoice"));
+const Invoices = React.lazy(() => import('./pages/Invoices'))
 function App() {
   return (
     <>
@@ -49,8 +54,18 @@ function App() {
                         path=":id"
                         element={<Checkout buyNow={true} />}
                       />
+
                     </Route>
-                  </Routes>
+                    <Route path="/invoices">
+                      <Route path="" element={<Invoices />} />
+                      <Route
+                        path=":id"
+                        element={<SingleInvoice buyNow={true} />}
+                      />
+                      
+                    </Route>
+                    <Route path="*" element={<PageNotFound />} />
+                  </Routes>     
                 </Suspense>
               </div>
               <BottomNavbar />

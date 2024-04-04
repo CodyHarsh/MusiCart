@@ -1,0 +1,246 @@
+.container {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px 40px;
+    width: 40%;
+    align-items: center;
+}
+
+.logoWrap{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+.signinText{
+    margin: 20px 0px 20px;
+    font-size: 30px;
+}
+  
+  .logoContainer {
+    display: flex;
+    justify-content: center;
+    font-size: 44.13px;
+    font-weight: 600;
+    color: rgba(46, 0, 82, 1);
+    gap: 4px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  .formContainer {
+    padding: 20px 40px;
+  border: 1px solid #b6b6b6;
+
+    border-radius: 23px;
+  }
+  .heading {
+    font-size: 49.13px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+    margin-bottom: 10px;
+  }
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  .input {
+    margin: 0px 0px 10px;
+    border: 1px solid #b6b6b6;
+    border-radius: 8px;
+    font-size: 18px;
+    height: 40px;
+    padding: 0px 10px;
+  }
+  .error {
+    color: rgba(228, 28, 28, 1);
+  }
+  
+  .inputError {
+    border-color: rgba(228, 28, 28, 1);
+  }
+  .label {
+    font-size: 16px;
+    margin: 0px 0px 5px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 1);
+    margin-top: 10px;
+  }
+  .button {
+    background-color: rgba(46, 0, 82, 1);
+    border: none;
+    outline: none;
+    text-decoration: none;
+    padding: 0px 10px;
+    text-align: center;
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    height: 40px;
+    font-weight: 500;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .button:hover{
+    filter: brightness(150%);
+  }
+  .agreementText {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 1);
+    margin-top: 20px;
+    line-height: 30px;
+  }
+  .terms {
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    line-height: 30px;
+  }
+  .loginLink {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .signInLink {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+    font-size: 15px;
+    font-weight: 300;
+  }
+  .haveAccountText {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 1);
+  }
+  .login{
+    font-size: 15px;
+    margin-left: 8px;
+    border-bottom: 2px solid rgba(0, 0, 0, 1);
+  }
+  .logoContainerMobile {
+    display: none;
+  }
+  .welcomeText {
+    display: none;
+  }
+  .dot {
+    display: none;
+  }
+  .alreadyCustomer {
+    display: none;
+  }
+  @media (max-width: 425px) {
+    .signinText{
+        font-size: 15px;
+        margin-right: 8px;
+    }
+    .logoContainerMobile {
+      display: flex;
+      background-color: rgba(46, 0, 82, 1);
+      gap: 4px;
+      padding: 10px;
+    }
+    .logoContainer {
+      display: none;
+    }
+    .logoContainerMobile div {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      font-size: 18.67px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 1);
+    }
+    .formContainer {
+      padding: 20px;
+      border-radius: 15px;
+    }
+  
+    .heading {
+      font-size: 15.7px;
+      font-weight: 600;
+    }
+  
+    .label {
+      font-size: 13.35px;
+      font-weight: 600;
+    }
+  
+    .error {
+      font-size: 14px;
+    }
+  
+    .agreementText {
+      margin-bottom: 10px;
+      height: max-content;
+      font-size: 12px;
+      font-weight: 600;
+    }
+  
+    .terms {
+      font-size: 10.77px;
+      font-weight: 400;
+      line-height: 15.78px;
+    }
+  
+    .loginLink {
+      margin-top: 30px;
+    }
+  
+    .welcomeText {
+      display: block;
+      font-size: 31px;
+      font-weight: 400;
+      color: rgba(46, 0, 82, 1);
+      margin-bottom: 30px;
+    }
+    .container {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+    .dot {
+      display: inline;
+    }
+    .alreadyCustomer {
+      display: inline;
+      font-size: 13.36px;
+      font-weight: 300;
+    }
+    .haveAccountText {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 32px;
+    }
+    .signInLink {
+      margin-left: 4px;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 32px;
+    }
+    .button {
+      font-size: 16;
+      margin: 0px 0px 20px;
+      font-weight: 500;
+      padding: 0px 10px;
+    }
+    .input {
+      font-size: 20px;
+    }
+    .footer {
+      display: none;
+    }
+  }

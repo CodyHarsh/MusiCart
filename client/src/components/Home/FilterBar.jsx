@@ -8,7 +8,6 @@ import ProductContext from "../../context/ProductContext";
 const FilterBar = () => {
   const { isList, setIsList, types, brands, colors, sortFilterProducts,priceList, isSearch } =
     useContext(ProductContext);
-    console.log(priceList);
   const [selectedType, setSelectedType] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
@@ -20,53 +19,34 @@ const FilterBar = () => {
     else if (e.target.name === "brand_filter") setSelectedBrand(e.target.value);
     else if (e.target.name === "color_filter") setSelectedColor(e.target.value);
     else if (e.target.name === "price_filter") setSelectedPrice(e.target.value);
-    else if (e.target.name === "sort") setSelectedSort(e.target.value);
-
-    
-
-    
+    else if (e.target.name === "sort") {
+      // Map frontend sort values to backend sort strings
+      if (e.target.value === "Price: Lowest") setSelectedSort("priceLowest");
+      else if (e.target.value === "Price: Highest") setSelectedSort("priceHighest");
+      else if (e.target.value === "Name: (A-Z)") setSelectedSort("nameAZ");
+      else if (e.target.value === "Name: (Z-A)") setSelectedSort("nameZA");
+      else if (e.target.value === "Featured") setSelectedSort("");
+    }
+  
     let selectedTypeD = selectedType ? selectedType : "";
     let selectedBrandD = selectedBrand ? selectedBrand : "";
     let selectedColorD = selectedColor ? selectedColor : "";
     let selectedPriceD = selectedPrice ? selectedPrice : "";
     let selectedSortD = selectedSort ? selectedSort : "";
-
+  
     if (e.target.name === "type_filter") selectedTypeD = e.target.value;
     else if (e.target.name === "brand_filter") selectedBrandD = e.target.value;
     else if (e.target.name === "color_filter") selectedColorD = e.target.value;
     else if (e.target.name === "price_filter") selectedPriceD = e.target.value;
     else if (e.target.name === "sort") selectedSortD = e.target.value;
-
+  
     let minPrice = selectedPriceD.split(",")[0];
     let maxPrice = selectedPriceD.split(",")[1];
     minPrice = parseInt(minPrice);
     maxPrice = parseInt(maxPrice);
-    // if (e.target.name === "type_filter") {
-    //   setSelectedType(e.target.value === "Featured" ? "" : e.target.value);
-    // } else if (e.target.name === "brand_filter") {
-    //   setSelectedBrand(e.target.value === "Featured" ? "" : e.target.value);
-    // } else if (e.target.name === "color_filter") {
-    //   setSelectedColor(e.target.value === "Featured" ? "" : e.target.value);
-    // } else if (e.target.name === "price_filter") {
-    //   setSelectedPrice(e.target.value === "Featured" ? "" : e.target.value);
-    // } else if (e.target.name === "sort") {
-    //   // Map frontend sort values to backend sort strings
-    //   if (e.target.value === "Price: Lowest") setSelectedSort( "priceLowest");
-    //   else if (e.target.value === "Price: Highest") setSelectedSort( "priceHighest");
-    //   else if (e.target.value === "Name: (A-Z)") setSelectedSort("nameAZ");
-    //   else if (e.target.value === "Name: (Z-A)")setSelectedSort ("sortBynameZA");
-    //   else if (e.target.value === "Featured")setSelectedSort("")
-    // }
+  
 
-    console.log(
-      selectedSortD,
-      selectedBrandD,
-      selectedTypeD,
-      selectedColorD,
-      minPrice,
-      maxPrice
-    );
-
+  
     sortFilterProducts(
       selectedSortD,
       selectedBrandD,
@@ -76,7 +56,6 @@ const FilterBar = () => {
       isSearch
     );
   };
-
   useEffect(() => {
       setSelectedType("");
       setSelectedBrand("");
@@ -188,11 +167,12 @@ const FilterBar = () => {
       </div>
       <div className="sort">
         <select name="sort" id="sort" onChange={handleChange}>
+
           <option value="">Featured</option>
-          <option value="priceasc">Price: Lowest</option>
-          <option value="pricedesc">Price: Highest</option>
-          <option value="nameasc">Name: (A-Z)</option>
-          <option value="namedesc">Name: (Z-A)</option>
+          <option value="priceLowest">Price: Lowest</option>
+          <option value="priceHighest">Price: Highest</option>
+          <option value="nameAZ">Name: (A-Z)</option>
+          <option value="nameZA">Name: (Z-A)</option>
         </select>
       </div>
     </div>

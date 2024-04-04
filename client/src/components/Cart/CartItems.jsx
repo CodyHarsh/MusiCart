@@ -19,7 +19,7 @@ const CartItems = (props) => {
     <>
     <div className='cartitems'>
         <hr />
-            {cart.map((item) => (
+            {props?.cart?.map((item) => (
                 <CartItem key={item._id} item={item} total={total} totalQuantity={totalQuantity}/>
             ))}
         <hr />

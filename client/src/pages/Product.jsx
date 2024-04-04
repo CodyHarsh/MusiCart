@@ -1,26 +1,31 @@
 import React, { useContext, useState, useEffect } from "react";
 import "../css/Product/Product.css";
 import MiniImages from "../components/ProductPage/MiniImages";
-
+import { TbFaceIdError } from "react-icons/tb";
 import ProductDescription from "../components/ProductPage/ProductDescription";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import ProductContext from "../context/ProductContext";
 import { IoMdArrowBack } from "react-icons/io";
 import MobileProduct from "../components/ProductPage/MobileProduct";
+import Spinner from "../components/ProductPage/Spinner";
+import NotFound  from "./NotFound";
+import PageNotFound from "./PageNotFound";
 
 const Product = () => {
   const { getProductById } = useContext(ProductContext);
+  const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   console.log("Product.jsx: ", product);
   useEffect(() => {
-    console.log("HERE");
+    setIsLoading(true);
     const getProduct = async (id) => {
       const product = await getProductById(id);
       setProduct(product);
     };
     getProduct(id);
+    setIsLoading(false);
   }, []);
 
   return (
@@ -31,6 +36,10 @@ const Product = () => {
           <span className="pc">Back to Products</span>
         </Link>
       </div>
+      {isLoading ? (<Spinner/>) : 
+      !product ? (
+        <PageNotFound name={"Product Not Found"} />
+            ) : (
       <div className="pc">
         <div className="productcontainer">
           <div className="producttitle">{product.productTitle}</div>
@@ -44,6 +53,8 @@ const Product = () => {
           </div>
         </div>
       </div>
+      )
+      }
       <MobileProduct product={product} /> 
     </div>
   );

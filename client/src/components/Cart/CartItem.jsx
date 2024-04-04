@@ -1,16 +1,21 @@
 import React, {useContext} from 'react'
 import CartContext from '../../context/CartContext';
+import { toast } from 'react-toastify';
 
 const CartItem = (props) => {
     const product = props.item.product;
     const {total} = props;
     console.log(product);
     const prductQuantity = props.item.productQuantity;
+    console.log("Product Quantity: ", prductQuantity);
     const {updateQuantity} = useContext(CartContext);
     console.log("IN CartItem.jsx: ",props);
     const handleUpdateQuantity = (e) =>{
         let productId = product._id;
         let quantity = e.target.value;
+        if(quantity > 8){
+            toast.error("Cannot Add this Product Anymore");
+        }
         updateQuantity(productId, quantity);
     }
   return (

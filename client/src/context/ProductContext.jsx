@@ -143,7 +143,8 @@ const ProductState = (props) => {
     type,
     color,
     priceRange,
-  ) => {
+    ) => {
+      console.log(type);
     setIsLoading(true);
     try {
       const urlParams = new URLSearchParams({ 

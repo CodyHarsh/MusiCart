@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../css/Hero.css"
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { useLocation } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { useContext } from 'react';
 import GlobalContext from '../context/GlobalContext';
+import CartContext from '../context/cartContext';
 
 const dict = {
   "/login": "Login",
@@ -16,26 +17,58 @@ const dict = {
 }
 
 const Hero = () => {
+  const {isAuthenticated} = useContext(GlobalContext);
+  const {getCart, totalQuantity, handleLogout} = useContext(CartContext);
+  const [isVisible, setIsVisible] = useState(false);
+
   const location = useLocation();
   if(location.pathname === "/login" || location.pathname === "/signup") return null;
-
+  //Check for the homepage or not
   let title = dict[location.pathname];
   if(location.pathname.charAt(1) === "p") title = "Product";
+ 
+  const isAtHome = location.pathname === "/";
 
-  const {isAuthenticated} = useContext(GlobalContext);
+  useEffect(() => {
+    getCart();
+  }, [])
 
   return (
     <div className='hero'>
       <div className='heroleft'>
         <Logo />
         <span className='location'>Home{title&&"/ "}{title}</span>
+        {isAuthenticated && isAtHome && location.pathname != "/success" &&
+          <Link className='invoices' to="/invoices">
+            <span>Invoices</span>
+          </Link> 
+        }
       </div>
       <div className='heroright'>
         {isAuthenticated&& location.pathname != "/success" &&
           <Link className='cartbtn' to="/cart">
             <MdOutlineShoppingCart className='carticon' />
-            View Cart
-          </Link>}
+            View Cart {totalQuantity}
+          </Link> 
+        }
+        {
+          isAuthenticated && isAtHome && location.pathname != "/success" &&
+          <div className='herorightDetails'>
+            <div onClick={() => setIsVisible(!isVisible) } className='name'>{localStorage.getItem("userName").split(" ").map((word)=> word[0]).join()}</div>
+
+            {
+              isVisible && 
+              <div className='hero-drop-down'>
+                <div className='fdsfs'>{localStorage.getItem("userName").split(" ").map((word)=> word).join(" ")}</div>
+                <hr />
+                <div onClick={handleLogout} className='hero-logout'>
+                  Logout
+                </div>
+              </div>
+            }
+            
+          </div>
+        }
       </div>
     </div>
   )

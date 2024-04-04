@@ -59,16 +59,21 @@ const addEntryToCart = async (req, res) => {
 
         let cart = await AddToCart.findOne({ name });
         
-
         if (!cart) {
             // If the user's cart doesn't exist, create a new one
             cart = new AddToCart({ name, products: [{ productId, quantity: 1 }] });
         } else {
             // If the user's cart exists, update the products array
             const productIndex = cart.products.findIndex(item => item.productId == productId);
+            
             if (productIndex !== -1) {
                 // If the product already exists in the cart, update its quantity
-                cart.products[productIndex].quantity += 1;
+                if(cart.products[productIndex].quantity >= 8){
+                    return res.status(200).json(error(201, "You Can Add Maximum 8 products", []));
+                }else{
+                    cart.products[productIndex].quantity += 1;
+                }
+                
             } else {
                 // If the product doesn't exist in the cart, add it
                 cart.products.push({ productId, quantity: 1 });

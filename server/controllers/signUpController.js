@@ -1,7 +1,8 @@
 const User = require("../models/user")
 const bcrypt = require("bcrypt");
 const { error, success } = require("../utlis/responseWrapper");
-
+const jwt = require('jsonwebtoken')
+const JWT_SECRET = process.env.JWT_SECRET;
  const signupController = async(req, res) => {
 
     try{
@@ -18,6 +19,12 @@ const { error, success } = require("../utlis/responseWrapper");
             return res.status(401).json(error(401, "User Already Exist", []))
         }
 
+        const prevUser2 = await User.findOne({mobile})
+
+        if(prevUser2){
+            return res.status(401).json(error(401, "User Already Exist", []))
+        }
+
         const response = await User.create({
             name, email, mobile, password: hashedPassword
         })
@@ -28,8 +35,9 @@ const { error, success } = require("../utlis/responseWrapper");
 
         // removing the password
         response.password = undefined;
+        const token = jwt.sign({ id: response._id }, JWT_SECRET);
         
-        return res.status(200).json(success(200, "User Registered Successfully", {response}))
+        return res.status(200).json(success(200, "User Registered Successfully", {response, token}))
         
     }catch(err){
         console.log("Error while signup: " + err);

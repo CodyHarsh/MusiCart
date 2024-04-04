@@ -11,7 +11,7 @@ const Banner = () => {
             <button>Buy Now</button>
         </div>
         <div className='bannerright'>
-            <img src={BannerImage} alt="banner" className='bannerimage' />
+            <img src="https://res.cloudinary.com/dp7faudgz/image/upload/v1712187691/Music%20cart/Logo%2C%20banner%2C%20success%20page%20logo%2C%20page%20not%20found/banner_t9hgm8.png" alt="banner" className='bannerimage' />
         </div>
     </div>
     </>
