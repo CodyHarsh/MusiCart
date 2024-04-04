@@ -1,5 +1,4 @@
 import React from 'react'
-import Confetti from "../assets/confetti.png"
 import '../css/Success.css'
 import { Link } from 'react-router-dom'
 

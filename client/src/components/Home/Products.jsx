@@ -5,7 +5,7 @@ import ProductItemListView from "./ProductItemListView";
 import ProductContext from "../../context/ProductContext";
 import Spinner from "../ProductPage/Spinner";
 import NotFound from "../../pages/NotFound";
-import CartContext from "../../context/cartContext";
+import CartContext from "../../context/CartContext";
 
 const Products = () => {
   const { isList, getAllProducts, products, isLoading } = useContext(ProductContext);

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { useContext } from 'react';
 import GlobalContext from '../context/GlobalContext';
-import CartContext from '../context/cartContext';
+import CartContext from '../context/CartContext';
 
 const dict = {
   "/login": "Login",
