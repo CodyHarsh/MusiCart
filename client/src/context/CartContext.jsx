@@ -198,7 +198,7 @@ const CartState = (props) => {
       });
       const data = await response.json();
       if (data.success) {
-        toastMessage(data.message, "success");
+        //toastMessage(data.message, "success");
         setTotalInvoices(data.data);
         return true;
       } else {
