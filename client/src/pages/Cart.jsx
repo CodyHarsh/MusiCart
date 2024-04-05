@@ -20,7 +20,7 @@ const Cart = () => {
   useEffect(() => {
     setIsLoading(true);
     if (!isAuthenticated) {
-      navigate("/login");
+      navigate("/accessDenied");
       return;
     }
 

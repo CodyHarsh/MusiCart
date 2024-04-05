@@ -5,9 +5,27 @@
     margin: auto;
     flex-direction: column;
     overflow-x: hidden;
+    margin-top: 30px;
 }
 
 .pageNotFoundImg{
-    height: 300px;
+    height: 230px;
     width: 300px;
+}
+
+.buttonpage{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 60px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #2E0052;
+    height: max-content;
+    width: max-content;
+    cursor: pointer;
+}
+
+.buttonpage:hover{
+    filter: brightness(150%);
 }

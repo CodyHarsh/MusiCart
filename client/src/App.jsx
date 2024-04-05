@@ -14,6 +14,7 @@ import Feedback from "./pages/Feedback";
 import PageNotFound  from "./pages/PageNotFound";
 import SingleInvoice from "./pages/SingleInvoice";
 import Login from "./pages/Login"
+import AccessDenied from "./pages/AccessDenied";
 
 // Lazy load components
 const Home = React.lazy(() => import("./pages/Home"));
@@ -63,6 +64,7 @@ function App() {
                       />
                       
                     </Route>
+                    <Route path="/accessDenied" element = {<AccessDenied />} />
                     <Route path="*" element={<PageNotFound />} />
                   </Routes>     
                 </Suspense>

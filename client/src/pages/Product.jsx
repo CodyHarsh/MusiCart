@@ -36,6 +36,7 @@ const Product = () => {
       !product ? (
         <PageNotFound name={"Product Not Found"} />
             ) : (
+              <>
       <div className="pc">
         <div className="productcontainer">
           <div className="producttitle">{product.productTitle}</div>
@@ -49,9 +50,11 @@ const Product = () => {
           </div>
         </div>
       </div>
+      
+      <MobileProduct product={product} /> 
+      </>
       )
       }
-      <MobileProduct product={product} /> 
     </div>
   );
 };
