@@ -8,11 +8,9 @@ const CheckoutReviewItems = (props) => {
 
   useEffect(() => {
     if(cart?.buyNow ){
-      console.log("BUY NOW: ", props.cart);
       setCurrentColor(cart.color);
       setCurrentProductName(cart.productName);
     }else if(cart){
-      console.log("NORMAL CART: ", props?.cart);
       setCurrentColor(cart[0]?.product?.color);
       setCurrentProductName(cart[0]?.product.productName);
     }
@@ -23,7 +21,6 @@ const CheckoutReviewItems = (props) => {
     setCurrentProductName(() => productname);
   }
   
-  console.log("CHECKOUT CART REVIEW ITEMS: ", currentColor, " ", currentProductName);
   return (
     <div className='leftitem'>
         <div className='ll'>

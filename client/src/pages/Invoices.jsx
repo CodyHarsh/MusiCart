@@ -33,7 +33,6 @@ const Invoices = () => {
 
     getTheInvoices();
   }, []);
-  console.log(totalInvoices);
   return (
     <div>
       {isLoading ? (

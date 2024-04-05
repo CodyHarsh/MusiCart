@@ -26,8 +26,6 @@ const Checkout = (props) => {
   const { cart, total, checkout, buyNow, totalQuantity, getCart } = useContext(CartContext);
 
   const dummyCheckout = () => {};
-  console.log("CHECKOUT.JSx: ", props);
-  console.log("CART: ", cart, " ");
 
   useEffect(() => {
     setIsLoading(true);
@@ -38,10 +36,8 @@ const Checkout = (props) => {
         }
 
         if (props.buyNow) {
-            console.log("HERE");
             const data = await buyNow(id);
         } else {
-            console.log("GET CART");
             const data = await getCart();
         }
     };
@@ -64,7 +60,6 @@ const Checkout = (props) => {
       orderDelivery,
     };
   }, [name, address, selectedPaymentMethod, orderDelivery]);
-  console.log(checkoutData);
 
   const handleCheckout = async () => {
     if (total === 0) {
@@ -73,7 +68,6 @@ const Checkout = (props) => {
     }
 
     const data = await checkout(checkoutData);
-    console.log("CHECKOUT DATA RESPONSE", data);
     if (data) {
       navigate("/success");
     }

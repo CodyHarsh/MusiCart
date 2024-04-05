@@ -31,7 +31,6 @@ const SingleInvoice = () => {
     setCurrentProductName(() => productname);
   }
 
-  console.log(singleInvoiceData);
   useEffect(() => {
     setIsLoading(true);
     if (!isAuthenticated) {
@@ -52,13 +51,11 @@ const SingleInvoice = () => {
         });
         const data = await response.json();
         if (data.success) {
-          console.log(data);
           setInvoiceDetails(data.data.invoiceData)
           setSingleInvoiceData(data.data);
           setCart(data.data.productData)
           setCurrentColor(data.data.productData[0].color);
           setCurrentProductName(data.data.productData[0].productName);
-          console.log("Single Invoice Data From Cart Context: ",singleInvoiceData)
           return true;
         } else {
           //toastMessage(data.message, "warning");

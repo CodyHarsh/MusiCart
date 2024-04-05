@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
 import "../../css/Home/Products.css";
 import ProductItemListView from "./ProductItemListView";
@@ -6,19 +6,19 @@ import ProductContext from "../../context/ProductContext";
 import Spinner from "../ProductPage/Spinner";
 import NotFound from "../../pages/NotFound";
 import CartContext from "../../context/CartContext";
+import LoadingBar from "../LoadingBar"
 
 const Products = () => {
-  const { isList, getAllProducts, products, isLoading } = useContext(ProductContext);
+  const { isList, getAllProducts, products, isProductStoreLoading } = useContext(ProductContext);
   const {getCart} = useContext(CartContext)
-    useEffect(() => {
-      getAllProducts();
-      getCart();
-    console.log("Products.js in Home: ", products);
+  useEffect(() => {
+    getAllProducts();
+    getCart();
   }, []);
 
   return (
     <>
-      {isLoading ? (
+      {isProductStoreLoading ? (
         <Spinner />
       ) : (
         products.length === 0 ? (<NotFound name={"Products Not Found For this"} />) :

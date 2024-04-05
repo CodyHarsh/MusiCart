@@ -13,19 +13,15 @@ import NotFound  from "./NotFound";
 import PageNotFound from "./PageNotFound";
 
 const Product = () => {
-  const { getProductById } = useContext(ProductContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const { getProductById,isProductStoreLoading } = useContext(ProductContext);
   const { id } = useParams();
   const [product, setProduct] = useState([]);
-  console.log("Product.jsx: ", product);
   useEffect(() => {
-    setIsLoading(true);
     const getProduct = async (id) => {
       const product = await getProductById(id);
       setProduct(product);
     };
     getProduct(id);
-    setIsLoading(false);
   }, []);
 
   return (
@@ -36,7 +32,7 @@ const Product = () => {
           <span className="pc">Back to Products</span>
         </Link>
       </div>
-      {isLoading ? (<Spinner/>) : 
+      {isProductStoreLoading ? (<Spinner/>) : 
       !product ? (
         <PageNotFound name={"Product Not Found"} />
             ) : (

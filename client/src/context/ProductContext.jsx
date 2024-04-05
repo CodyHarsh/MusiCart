@@ -7,13 +7,13 @@ import { toast } from "react-toastify";
 let url = import.meta.env.VITE_URL;
 
 const ProductState = (props) => {
+  const[isProductStoreLoading, setIsProductStoreLoading] = useState(false);
   const [isList, setIsList] = useState(false);
   const [products, setProducts] = useState([]);
   const [types, setTypes] = useState([]);
   const [brands, setBrands] = useState([]);
   const [colors, setColors] = useState([]);
   const [isSearch, setIsSearch] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [priceList, setPriceList] = useState([]);
 
   const toastMessage = (message, type) => {
@@ -24,6 +24,7 @@ const ProductState = (props) => {
   };
 
   const getALLCategories = async () => {
+    setIsProductStoreLoading(true);
     try{
       const fetchTheCategories = await fetch(`${url}/product/getCategories`, {
         method: "GET",
@@ -39,24 +40,27 @@ const ProductState = (props) => {
         setTypes(categoriesResponse.data.headphoneTypes);
         setBrands(categoriesResponse.data.brandNames);
         setColors(categoriesResponse.data.colors); 
-        setPriceList(categoriesResponse.data.priceRange)
+        setPriceList(categoriesResponse.data.priceRange);
+        setIsProductStoreLoading(false);
         return true;
       } else {
         toastMessage(categoriesResponse.message, "warning");
+        setIsProductStoreLoading(false);
         return false;
       }
     }
     catch (error) {
       console.log(error);
+      setIsProductStoreLoading(false);
       return false;
     } finally {
-      setIsLoading(false);
+      setIsProductStoreLoading(false);
     }
     
   }
 
   const getAllProducts = async () => {
-    setIsLoading(true);
+    setIsProductStoreLoading(true);
     try {
       const fetchTheProducts = await fetch(`${url}/product/getproduct`, {
         method: "GET",
@@ -70,19 +74,23 @@ const ProductState = (props) => {
       if (productResponse.success) {
         setProducts(productResponse.data);
         getALLCategories()
+        setIsProductStoreLoading(false);
       } else {
         toastMessage(productResponse.message, "warning");
+        setIsProductStoreLoading(false);
         return false;
       }
     } catch (error) {
       console.log(error);
+      setIsProductStoreLoading(false);
       return false;
     } finally {
-      setIsLoading(false);
+      setIsProductStoreLoading(false);
     }
   };
 
   const getProductById = async (id) => {
+    setIsProductStoreLoading(true);
     try {
       const response = await fetch(`${url}/product/getproductbyid`, {
         method: "POST",
@@ -94,21 +102,22 @@ const ProductState = (props) => {
       });
       const data = await response.json();
       if (data.success) {
-        console.log("IN product Context GetProdectbyId(): ", data.data);
+        setIsProductStoreLoading(false);
         return data.data;
       } else {
         toastMessage(data.message, "warning");
+        setIsProductStoreLoading(false);
         return false;
       }
     } catch (error) {
       console.log(error);
+      setIsProductStoreLoading(false);
       return false;
     }
   };
 
   const getProductsByNames = async (name) => {
-    console.log("Here")
-    setIsLoading(true);
+    setIsProductStoreLoading(true);
     try {
       if(name.length <= 0){
         return getAllProducts();
@@ -121,19 +130,21 @@ const ProductState = (props) => {
         },
       });
       const data = await response.json();
-      console.log("GetPRoductByNames(): ", data);
       if (data.success) {
         setProducts(data.data);
         getALLCategories();
+        setIsProductStoreLoading(false);
       } else {
         toastMessage(data.message, "warning");
+        setIsProductStoreLoading(false);
         return false;
       }
     } catch (error) {
       console.log(error);
+      setIsProductStoreLoading(false);
       return false;
     } finally {
-      setIsLoading(false);
+      setIsProductStoreLoading(false);
     }
   };
 
@@ -144,8 +155,7 @@ const ProductState = (props) => {
     color,
     priceRange,
     ) => {
-      console.log(type);
-    setIsLoading(true);
+      setIsProductStoreLoading(true);
     try {
       const urlParams = new URLSearchParams({ 
         sortBy: sortType,
@@ -162,21 +172,20 @@ const ProductState = (props) => {
         },
       });
       const data = await response.json();
-      console.log(data);
       if (data.success) {
         setProducts(data.data);
-        // setTypes(data.types);
-        // setBrands(data.brands);
-        // setColors(data.colors);
+        setIsProductStoreLoading(false);
       } else {
         toastMessage(data.message, "warning");
+        setIsProductStoreLoading(false);
         return false;
       }
     } catch (error) {
       console.log(error);
+      setIsProductStoreLoading(false);
       return false;
     } finally {
-      setIsLoading(false);
+      setIsProductStoreLoading(false);
     }
   };
 
@@ -196,7 +205,7 @@ const ProductState = (props) => {
         sortFilterProducts,
         isSearch,
         setIsSearch,
-        isLoading,
+        isProductStoreLoading,
       }}
     >
       {props.children}

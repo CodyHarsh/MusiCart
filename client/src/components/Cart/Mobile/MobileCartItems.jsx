@@ -12,7 +12,6 @@ const MobileCartItems = (props) => {
   const[isLoading, setIsloading] = useState(false);
   const {isAuthenticated} = GlobalContext
   const {cart, total, getCart} = useContext(CartContext);
-  console.log("HERE");
 
   useEffect(() => {
    

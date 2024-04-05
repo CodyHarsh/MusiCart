@@ -39,12 +39,8 @@ const GlobalState = (props) => {
       });
       setProgress(40);
       const data = await responsesData.json();
-      console.log(data);
-      //const data = response.data
-      
       setProgress(60);
       if (data.success) {
-        console.log(data);
         setUser({
           userId: data.data.user._id,
           name: data.data.user.name,
@@ -58,7 +54,6 @@ const GlobalState = (props) => {
         setProgress(100);
         return true;
       } else {
-        console.log("Here");
         toastMessage(data.message, "warning");
         setProgress(100);
         return false;
@@ -71,7 +66,6 @@ const GlobalState = (props) => {
   };
 
   const signup = async (name, email, password, mobile) => {
-    console.log("HERE");
     setProgress(20);
     try {
       const response = await fetch(`${url}/user/signup`, {
@@ -83,7 +77,6 @@ const GlobalState = (props) => {
       });
       setProgress(40);
       const data = await response.json();
-      console.log(data);
       setProgress(60);
       if (data.success) {
         toastMessage(data.message, "success");
@@ -114,7 +107,6 @@ const GlobalState = (props) => {
 
   const getUserDetails = async () => {
     setProgress(20);
-    console.log("TOKEN: ", localStorage.getItem("token"));
     try {
       const response = await fetch(`${url}/user/getUserDetails`, {
         method: "GET",
@@ -125,10 +117,8 @@ const GlobalState = (props) => {
       });
       setProgress(40);
       const data = await response.json();
-      console.log(data);
       setProgress(60);
       if (data.success) {
-        console.log(data);
         toastMessage(data.message, "success");
         setUser({
           userId: data.data._id,
@@ -153,7 +143,6 @@ const GlobalState = (props) => {
   };
 
   const handleLogout = () => {
-    console.log("logout");
     localStorage.removeItem("token");
     setIsAuthenticated(false);
     setUser({ name: "", email: "", mobile: "" });

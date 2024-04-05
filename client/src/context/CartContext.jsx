@@ -103,7 +103,6 @@ const CartState = (props) => {
   };
 
   const buyNow = async (id) => {
-    console.log("IN BUY NOW");
     try {
       const response = await fetch(`${url}/product/getproductbyid`, {
         method: "POST",
@@ -113,9 +112,7 @@ const CartState = (props) => {
         body: JSON.stringify({ _id: id})
       });
       let data = await response.json();
-      console.log("buyNow() data: ", data);
       if (data.success) {
-        console.log(data);
         data.data.quantity = 1;
         setCart(data.data);
         setTotal(data.data.price);
@@ -146,23 +143,17 @@ const CartState = (props) => {
     //const data = await getCart();
     const productIds = [];
     if(cart.length >= 1){
-      console.log("IF Cart.lengjt > 0: ", cart)
       cart.forEach((item) => {
         productIds.push({productId: item.product._id});
       })
     }else{
-      console.log("IF Cart.lengjt === 0: ", cart)
-
       productIds.push({productId: cart._id});
     }
-    console.log(cart);
-    //userId, name, purchaseDate, address, paymentMethod, orderItems, orderDelivery, products
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     const purchaseDate = mm + '/' + dd + '/' + yyyy;
-    console.log(name, purchaseDate,address ,selectedPaymentMethod,total, orderDelivery, productIds)
     try {
       const response = await fetch(`${url}/user/addInvoice`, {
         method: "POST",
@@ -207,7 +198,6 @@ const CartState = (props) => {
       });
       const data = await response.json();
       if (data.success) {
-        console.log(data);
         toastMessage(data.message, "success");
         setTotalInvoices(data.data);
         return true;
@@ -236,17 +226,14 @@ const CartState = (props) => {
       });
       const data = await response.json();
       if (data.success) {
-        console.log(data);
         toastMessage(data.message, "success");
         singleInvoicesData.current = (data.data);
-        console.log("Single Invoice Data From Cart Context: ",singleInvoicesData)
         return true;
       } else {
         toastMessage(data.message, "warning");
         return false;
       }
     } catch (error) {
-      console.log(error);
       return false;
     }
   };
