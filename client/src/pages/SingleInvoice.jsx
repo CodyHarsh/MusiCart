@@ -15,7 +15,6 @@ let url = import.meta.env.VITE_URL;
 
 const SingleInvoice = () => {
   const [isLoading , setIsLoading] = useState(false);
-  const { getSingleInvoice} = useContext(CartContext);
   const { isAuthenticated } = useContext(GlobalContext);
   const [singleInvoiceData, setSingleInvoiceData] = useState([]);
   const [cart , setCart] = useState([]);
@@ -32,12 +31,13 @@ const SingleInvoice = () => {
   }
 
   useEffect(() => {
-    setIsLoading(true);
+   
     if (!isAuthenticated) {
       navigate("/");
       return;
     }
     const getSingleInvoice = async (invoiceId) => {
+      setIsLoading(true);
       try {
         const response = await fetch(`${url}/user/getInvoice`, {
           method: "POST",
@@ -56,26 +56,31 @@ const SingleInvoice = () => {
           setCart(data.data.productData)
           setCurrentColor(data.data.productData[0].color);
           setCurrentProductName(data.data.productData[0].productName);
+          setIsLoading(false);
           return true;
         } else {
           //toastMessage(data.message, "warning");
+
+          setIsLoading(false);
           return false;
         }
       } catch (error) {
+        setIsLoading(false);
+        setIsLoading(false);
         console.log(error);
         return false;
       }
     };
     getSingleInvoice(id);
 
-    setIsLoading(false);
+    
   }, []);
 
 
 
   return (
     <>
-    {isLoading ? ( <LoadingBar />) : ( 
+    {isLoading ? ( <Spinner />) : ( 
     <>
         <div className="checkout">
           <div className="goback">

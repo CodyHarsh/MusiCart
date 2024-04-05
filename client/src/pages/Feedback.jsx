@@ -144,7 +144,7 @@ function Feedback() {
               )}
             </div>
             <div className={styles.submitButtonContainer}>
-              <button type="submit" className={styles.submitButton}>
+              <button style={{cursor: 'pointer'}} type="submit" className={styles.submitButton}>
                 Submit
               </button>
             </div>

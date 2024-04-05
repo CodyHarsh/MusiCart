@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "../css/Hero.css"
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { useContext } from 'react';
@@ -28,12 +28,12 @@ const Hero = () => {
   if(location.pathname.charAt(1) === "p") title = "Product";
   const alpha = "harsh bharat madhusudhan Kailash Kumar"
   const isAtHome = location.pathname === "/";
-
+  const navigate = useNavigate();
   return (
     <div className='hero'>
       <div className='heroleft'>
         <Logo />
-        <span className='location'>Home{title&&"/ "}{title}</span>
+        <span onClick={() => navigate("/")} className='location'>Home {title&&"/ "}{title}</span>
         {isAuthenticated && isAtHome && location.pathname != "/success" &&
           <Link className='invoices' to="/invoices">
             <span>Invoices</span>
