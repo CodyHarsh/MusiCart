@@ -35,7 +35,7 @@ const Cart = () => {
   return (
     <>
       {isLoading ? (
-        <Spinner />
+        <LoadingBar />
       ) : (
         <div className="cart">
           <div className="goback">

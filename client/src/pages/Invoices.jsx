@@ -8,6 +8,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import { TbFaceIdError } from "react-icons/tb";
 import IconEdit from "../assets/IconEdit.svg";
 import "../css/Invoices.css";
+import LoadingBar from "react-top-loading-bar";
 
 const Invoices = () => {
   const { findInvoices, totalInvoices } = useContext(CartContext);
@@ -36,7 +37,7 @@ const Invoices = () => {
   return (
     <div>
       {isLoading ? (
-        <Spinner /> // Message while loading
+        <LoadingBar /> // Message while loading
       ) : (
         <>
           <div className="goback">

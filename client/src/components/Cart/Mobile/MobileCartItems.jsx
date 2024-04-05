@@ -1,22 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CartItem from "../CartItem";
 import MobileCartItem from "./MobileCartItem";
+import CartContext from "../../../context/CartContext";
+import LoadingBar from "react-top-loading-bar";
+import GlobalContext from "../../../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 const MobileCartItems = (props) => {
-  const { cart, total } = props;
-  const [len, setLen] = useState(0);
-  const findItems = () => {
-    let count = 0;
-    cart.forEach((item) => {
-      count += item.quantity;
-    });
-    return count;
-  };
+  
+//   let { cart, total } = props;
+  const[isLoading, setIsloading] = useState(false);
+  const {isAuthenticated} = GlobalContext
+  const {cart, total, getCart} = useContext(CartContext);
+  console.log("HERE");
+
   useEffect(() => {
-    setLen(findItems());
-  }, [cart]);
+   
+    setIsloading(true);
+    const fetchData = async () => {
+       const data = await getCart();
+    }
+    fetchData();
+    setIsloading(false);
+  }, []);
   return (
     <>
+      {isLoading ? <LoadingBar /> : (
       <div className="cartitems">
         <hr />
         {cart.map((item) => (
@@ -24,6 +33,7 @@ const MobileCartItems = (props) => {
         ))}
         <hr />
       </div>
+      )}
     </>
   );
 };

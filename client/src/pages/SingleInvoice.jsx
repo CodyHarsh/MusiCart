@@ -10,6 +10,7 @@ import Spinner from "../components/ProductPage/Spinner";
 import { toast } from "react-toastify";
 import { InvoiceImage } from "./InvoiceImage";
 import PageNotFound from "./PageNotFound";
+import LoadingBar from "react-top-loading-bar";
 let url = import.meta.env.VITE_URL;
 
 const SingleInvoice = () => {
@@ -77,7 +78,7 @@ const SingleInvoice = () => {
 
   return (
     <>
-    {isLoading ? ( <Spinner />) : ( 
+    {isLoading ? ( <LoadingBar />) : ( 
     <>
         <div className="checkout">
           <div className="goback">
@@ -92,11 +93,11 @@ const SingleInvoice = () => {
             
               <div className="leftitem">
                 <div className="ll">1. Delivery address</div>
-                <div className="lr">
-                  <p style={{ fontSize: "18px", textTransform: 'capitalize', fontWeight: "bold" }}>
+                <div className="lr invoice-product-data">
+                  <div style={{ fontSize: "18px", textTransform: 'capitalize', fontWeight: "bold" }}>
                     {invoiceDetails?.name}
-                  </p >
-                  <p style={{ fontSize: "16px", marginTop: "10px", textTransform: 'capitalize' }}>{invoiceDetails?.address}</p>
+                  </div>
+                  <div style={{ fontSize: "16px", textTransform: 'capitalize' }}>{invoiceDetails?.address}</div>
                 </div>
               </div>
               <hr />

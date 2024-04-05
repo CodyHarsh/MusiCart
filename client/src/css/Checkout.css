@@ -68,6 +68,10 @@
     width: 50%;
 }
 
+.invoice-product-data{
+    display: flex;
+    flex-direction: column;
+}
 
 .leftitem .lr .textarea{
     resize: none;
