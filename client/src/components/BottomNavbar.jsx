@@ -28,7 +28,7 @@ const BottomNavbar = () => {
             <Link to="/cart" className={`bottomnavbar-item ${activeLink === '/cart' && 'active'}`}>
                 <MdAddShoppingCart className='bottomnavbar-icon' />
                 <p className='bottomnavbar-text'>Cart</p>
-                <div className='bottomnavbar-totalQuantity'>{totalQuantity || 0}</div>
+                {isAuthenticated && <div className='bottomnavbar-totalQuantity'>{totalQuantity || 0}</div> }
             </Link>
             {isAuthenticated ? (
                 <div onClick={() => navigate('/invoices')} className={`bottomnavbar-item ${activeLink === '/invoices' && 'active'}`}>
