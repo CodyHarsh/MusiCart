@@ -1,4 +1,4 @@
-[# MusicCart - MERN Stack React App
+# MusicCart - MERN Stack React App
 
 This is a full-stack web application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It comprises a client-side interface developed with React.js and a server-side backend built with Node.js and Express.js, utilizing MongoDB as the database.
 
